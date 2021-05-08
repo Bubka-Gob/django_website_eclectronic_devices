@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        {% block title %}<title>Заказы</title>{% endblock %}
+</head>
+<body style="background-color:#e9c46a;">
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #264653">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home-page' %}" style="color: #e76f51">Заказы</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color: #e76f51">Элемент</a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav justify-content-end">
+          <ul class="navbar-nav">
+
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout-page' %}" style="color: #e76f51">Выйти</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'profile-page' %}" style="color: #e76f51">Профиль</a>
+            </li>
+
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'register-page' %}" style="color: #e76f51">Создать аккаунт</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login-page' %}" style="color: #e76f51">Войти</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% if messages %}
+      {% for message in messages %}
+        <div class="container">
+          <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% block header_content %}
+
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

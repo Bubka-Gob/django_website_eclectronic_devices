@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container bg-white border" style="width: 400px; margin-top:100px; padding:25px;">
+    <p>Вы вышли из аккаунта</p>
+    <p><a href="{% url 'login-page' %}">Войти снова</a></p>
+    <p><a href="{% url 'home-page' %}">Вернуться на главную</a></p>
+  </div>
+{% endblock %}

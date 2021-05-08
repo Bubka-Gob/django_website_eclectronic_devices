@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container bg-white border" style="width: 500px; margin-top:100px; padding:25px;">
+    <form method="POST" class="container-login">{% csrf_token %}
+      <h2>Вход</h2>
+      <div class="mb-3">
+        <label for="InputEmail1" class="form-label">Email адрес</label>
+        <input type="email" name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="InputPassword1" class="form-label">Пароль</label>
+        <input type="password" name="password" class="form-control" id="InputPassword1">
+      </div>
+      {% for error in form.non_field_errors %}
+        <p style="color:red">{{error}}</p>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary" style="margin-bottom:18px;">Войти</button>
+    </form>
+    <a href="{% url 'register-page' %}">Создать аккаунт</a>
+  </div>
+
+{% endblock %}
