@@ -2,13 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from .forms import RegistrationForm, LoginForm
+from.models import UserModel
 
 def home_view(request):
     return render(request, 'home/home.html')
 
 def register_view(request):
-    form = RegistrationForm()
-    if request.method == 'POST':
+    if request.method == 'GET':
+        form = RegistrationForm()
+    else:
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
@@ -41,3 +43,16 @@ def logout_view(request):
 
 def profile_view(request):
     return render(request, 'home/profile.html')
+
+def redact_view(request):
+    if request.method == 'GET':
+        return render(request, 'home/redact.html')
+    else:
+        user_row = UserModel.objects.get(email=request.user.email)
+        user_row.first_name = request.POST['first_name']
+        user_row.last_name = request.POST['last_name']
+        user_row.phone = request.POST['phone']
+        user_row.city = request.POST['city']
+        user_row.save()
+
+        return redirect('profile-page')

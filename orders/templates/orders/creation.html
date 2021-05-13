@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container bg-white">
+    <form method="POST" class="container-login">{% csrf_token %}
+      <h2>Создайте новый заказ</h2>
+      <div class="mb-3">
+        <label for="InputName" class="form-label">Название</label>
+        <input type="text" name="name" class="form-control" id="InputName">
+      </div>
+      <div class="mb-3">
+        <label for="InputDescription" class="form-label">Описание</label>
+        <input type="text" name="description" class="form-control" id="InputDescription">
+      </div>
+      {% for error in form.non_field_errors %}
+        <p style="color:red">{{error}}</p>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary" style="margin-bottom:18px;">Создать</button>
+    </form>
+  </div>
+{% endblock %}

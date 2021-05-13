@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container bg-light py-3 px-5">
+    <h3 style="text-align: center;">Заказы пользователя {{user.first_name}} {{user.last_name}}</h3>
+    <div style="border-bottom: 1px solid black;"></div>
+    <p>Текущие заказы:</p>
+    {% if not orders_current %}
+      <p>У вас нет текущих заказов</p>
+    {% endif %}
+    {% for order in orders_current %}
+      {% include 'order_container.html' %}
+    {% endfor %}
+    <div style="border-bottom: 1px solid black;"></div>
+    <p>Выполненные заказы:</p>
+    {% if not orders_history %}
+      <p>У вас нет выполненных заказов</p>
+    {% endif %}
+    {% for order in orders_history %}
+      {% include 'order_container.html' %}
+    {% endfor %}
+  </div>
+{% endblock %}

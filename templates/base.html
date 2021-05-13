@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-        {% block title %}<title>Заказы</title>{% endblock %}
+        {% block title %}<title>Сайт заказов</title>{% endblock %}
 </head>
 <body style="background-color:#e9c46a;">
     <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #264653">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'home-page' %}" style="color: #e76f51">Заказы</a>
+        <a class="navbar-brand" href="{% url 'home-page' %}" style="color: #e76f51">Главная</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav" aria-controls="navbarNav"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#" style="color: #e76f51">Элемент</a>
+              <a class="nav-link" href="{% url 'examples-page' %}" style="color: #e76f51">Примеры</a>
             </li>
           </ul>
         </div>
