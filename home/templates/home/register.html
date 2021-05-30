@@ -1,51 +1,45 @@
 {% extends 'base.html' %}
 {% block title %}<title>Войти</title>{% endblock %}
 {% load model_to_user %}
-{% block content %}
-<!--
-    <form method="POST">{% csrf_token %}
-      <h2>Регистрация</h2>
-      {% for field in form %}
-        <div class="mb-3">
-          <p>{{field.label}}</p>
-          {{field}}
-        </div>
-        {% for error in field.errors %}
-          <p style="color:red">{{error|model_to_user}}</p>
-        {% endfor %}
-      {% endfor %}
-      {% if form.non_field_errors %}
-        {{form.non_field_errors}}
-      {% endif %}
-      <button type="submit" class="btn btn-primary">Регистрация</button>
-    </form>
-    <p>Уже есть аккаунт? <a href="{% url 'login-page' %}">Войти</a></p>
-      -->
 
-  <div class="container bg-white border" style="width: 500px; margin-top:100px; padding:25px;">
+{% block content %}
+  <div class="container bg-white border" style="width: 500px; margin-top: 100px; margin-bottom: 50px; padding: 25px;">
     <form method="POST" class="container-login">{% csrf_token %}
-      <h2>Регистрация</h2>
+      <h2 style="margin-bottom: 25px; text-align: center;">Регистрация</h2>
+
       <div class="mb-3">
-        <label for="InputEmail1" class="form-label">Email адрес</label>
-        <input type="email" name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+        {{form.email}}
       </div>
       {% for error in form.email.errors %}
         <p style="color:red">{{error|model_to_user}}</p>
       {% endfor %}
-      <div class="row">
-        <div class="col">
-          <input type="text" name="first_name" class="form-control" placeholder="Имя" aria-label="First name">
-        </div>
-        <div class="col">
-          <input type="text" name="last_name" class="form-control" placeholder="Фамилия" aria-label="Last name">
-        </div>
+
+      <div class="mb-3">
+        {{form.full_name}}
       </div>
+
+      <div class="mb-3">
+        {{form.phone}}
+      </div>
+      {% for error in form.phone.errors %}
+        <p style="color:red">{{error|model_to_user}}</p>
+      {% endfor %}
+
       <div class="row" style="margin-top:18px; margin-bottom:18px;">
         <div class="col">
-          <input type="password" name="password1" class="form-control" placeholder="Пароль" aria-label="First name">
+          {{form.company}}
         </div>
         <div class="col">
-          <input type="password" name="password2" class="form-control" placeholder="Подтверждение пароля" aria-label="Last name">
+          {{form.address}}
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:18px; margin-bottom:18px;">
+        <div class="col">
+          {{form.password1}}
+        </div>
+        <div class="col">
+          {{form.password2}}
         </div>
       </div>
       {% for error in form.password1.errors %}
@@ -54,6 +48,7 @@
       {% for error in form.password2.errors %}
         <p style="color:red">{{error|model_to_user}}</p>
       {% endfor %}
+
       {% for error in form.non_field_errors %}
         <p style="color:red">{{error}}</p>
       {% endfor %}
@@ -61,5 +56,4 @@
     </form>
     <a href="{% url 'login-page' %}">Войти</a>
   </div>
-
 {% endblock %}

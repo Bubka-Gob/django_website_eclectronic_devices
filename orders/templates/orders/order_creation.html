@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container bg-white">
+    <form method="POST" >{% csrf_token %}
+      <div class="mb-3">
+        <label for="input_address" class="form-label">Адрес монтажа:</label>
+        {{form.address}}
+      </div>
+      <button type="submit" class="btn btn-primary" style="margin-bottom:18px;">Оформить заказ</button>
+    </form>
+  </div>
+{% endblock %}

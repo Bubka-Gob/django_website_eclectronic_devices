@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="container bg-white">
+  <div class="container bg-light">
     <h1 style="text-align: center">Примеры</h1>
+    {% for device in devices %}
+      {% include 'example_container.html' %}
+    {% endfor %}
   </div>
+
 {% endblock %}

@@ -1,0 +1,14 @@
+<div class="card" style="width: 60%; margin-top: 20px; margin-bottom: 20px; margin-left: 220px;">
+  <div class="card-body">
+    <h5 class="card-title">{{device.name}}</h5>
+    <p class="card-text">{{device.description}}</p>
+    <p class="card-text">{{device.requirements}}</p>
+    <img src="{{device.image.url}}" style="margin-bottom: 15px;" class="card-img-top" alt="...">
+    {% if user.is_staff %}
+      <a href="{% url 'order_creation-page' device_id=device.id %}" class="btn btn-primary">Редактировать</a>
+    {% else %}
+      <a href="{% url 'order_creation-page' device_id=device.id %}" class="btn btn-primary">Оформить заказ</a>
+    {% endif %}
+
+  </div>
+</div>

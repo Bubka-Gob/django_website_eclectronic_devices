@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container bg-white">
+      <h2>Заказ пользователя {{order.client.full_name}} от {{order.date_of_creation}}</h2>
+      {% include 'order_info.html' %}
+      {% if order.is_finished %}
+        <p>Заказ выполнен</p>
+      {% elif order.is_in_process %}
+        <a href="{% url 'device_redact-page' order_id=order.id %}"><button class="btn btn-primary">Редактировать</button></a>
+        <a href="{% url 'employee_managing-page' order_id=order.id %}"><button class="btn btn-primary">Выбрать сотрудников</button></a>
+
+
+        <!--
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+          <p>Загрузить изображение для заказа:</p>
+          <div class="input-group mb-3">
+              <input type="file" name="image" class="form-control" id="inputImage" accept="image/*">
+              <button class="btn btn-outline-secondary" type="submit" id="Submit1">Button</button>
+          </div>
+          <p>Загрузить ТЗ:</p>
+          <div class="input-group mb-3">
+              <input type="file" name="spec_document" class="form-control" id="inputSpec" accept="docx">
+              <button class="btn btn-outline-secondary" type="submit" id="Submit2">Button</button>
+          </div>
+        </form>
+        -->
+
+
+      {% else %}
+        <a href="{% url 'order_accept-page' order_id=order.id %}"><button class="btn btn-primary">Принять в работу</button></a>
+      {% endif %}
+    </div>
+{% endblock %}

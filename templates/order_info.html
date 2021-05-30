@@ -1,0 +1,14 @@
+<h2 style="text-align: center;">{{order.device.name}}</h2>
+<p>{{order.address}}</p>
+<p>{{order.device.description}}</p>
+<p>Температура эксплуатации: от {{order.device.min_temp}} до {{order.device.max_temp}}</p>
+{% if order.device.is_street %}
+    <p>Монтаж на открытом воздухе</p>
+{% endif %}
+{% if order.device.is_room %}
+    <p>Монтаж в комнате</p>
+{% endif %}
+{% if order.device.is_220 %}
+    <p>Питание от бытовой сети</p>
+{% endif %}
+<p>{{order.device.requirements}}</p>

@@ -1,10 +1,14 @@
 <div class="card" style="width: 100%; margin-top: 12px; margin-bottom: 12px">
   <div class="card-body">
-    <h5 class="card-title">{{order.name}}</h5>
-    <p class="card-text">{{order.description}}</p>
+    <h5 class="card-title">{{order.device.name}}</h5>
+    <p class="card-text">{{order.device.description}}</p>
     <p class="card-text">{{order.date_of_creation}}</p>
-    {% block button %}
-    <a href="{% url 'order_detail-page' order_id=order.id %}" class="btn btn-primary">Детали заказа</a>
-    {% endblock %}
+    {% if user.is_staff %}
+      <p>{{order.client.first_name}} {{order.client.last_name}} ({{order.client.email}})</p>
+      <a href="{% url 'employee_order-page' order_id=order.id %}" class="btn btn-primary">Детали заказа</a>
+    {% else %}
+      <a href="{% url 'order_detail-page' order_id=order.id %}" class="btn btn-primary">Детали заказа</a>
+    {% endif %}
+
   </div>
 </div>

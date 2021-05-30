@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container bg-light">
+  <h1>Заказ на {{order.device.name}} ({{order.client.full_name}})</h1>
+  <h2>Сотрудники, работающие над заказом</h2>
+  {% for element in added_elements %}
+    {% include 'employee_container.html' %}'
+  {% endfor %}
+  <h2>Список сотрудников</h2>
+  {% for element in other_elements %}
+    {% include 'employee_container.html' %}'
+  {% endfor %}
+</div>
+{% endblock %}

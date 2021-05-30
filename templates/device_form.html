@@ -1,0 +1,77 @@
+<form method="POST" >{% csrf_token %}
+  {% if user.is_staff %}
+    <h2>Редактировать заказ</h2>
+  {% else %}
+    <h2>Создайте заказ на новое устройство</h2>
+  {% endif %}
+
+  <div class="mb-3">
+    <label for="input_name" class="form-label">Название устройства:</label>
+    {{form.name}}
+  </div>
+  <div class="mb-3">
+    <label for="input_description" class="form-label">Описание устройства (выполняемые функции):</label>
+    {{form.description}}
+  </div>
+
+  <div class="container border bg-white" style="padding: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px;">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="areaOptions" id="radio1" value="is_street"
+          onclick="document.getElementById('input_min').value = -45;
+                   document.getElementById('input_max').value = 45;">
+      <label class="form-check-label" for="radio1">На открытом воздухе</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="areaOptions" id="radio2" value="is_room"
+          onclick="document.getElementById('input_min').value = 10;
+                   document.getElementById('input_max').value = 35;">
+      <label class="form-check-label" for="radio2">В комнате (жилом помещении)</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="areaOptions" id="radio3" value="other" checked>
+      <label class="form-check-label" for="radio3">Другое (указать в требованиях)</label>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="input_min" class="form-label">Укажите минимальную температуру эксплуатации устройства:</label>
+        {{form.min_temp}}
+      </div>
+      <div class="col">
+        <label for="input_max" class="form-label">Укажите максимальную температуру эксплуатации устройства:</label>
+        {{form.max_temp}}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-check">
+    {{form.is_220}}
+    <label class="form-check-label" for="input_220">
+      Питание от бытовой сети 220В (если нет, укажите подробности в требованиях)
+    </label>
+  </div>
+
+  <div class="mb-3">
+    <label for="input_requirements" class="form-label">
+      Укажите требования к устройству или его особые характеристики (каждое с новой строки):
+    </label>
+    {{form.requirements}}
+  </div>
+
+  <div class="form-check">
+    {{form.is_private}}
+    <label class="form-check-label" for="input_private">
+      Скрыть устройство (другие пользователи не смогут увидеть ваше устройство в примерах)
+    </label>
+  </div>
+
+  {% for error in form.non_field_errors %}
+    <p style="color:red">{{error}}</p>
+  {% endfor %}
+  <button type="submit" class="btn btn-primary" style="margin-bottom:18px;">
+    {% if user.is_staff %}
+      Изменить
+    {% else %}
+      Создать
+    {% endif %}
+  </button>
+</form>

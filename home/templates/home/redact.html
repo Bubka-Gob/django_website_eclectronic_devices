@@ -4,18 +4,18 @@
       <div class="container border" style="width: 700px;">
         <div class="row">
           <div class="col-6 col-md-4">
-            <p>Имя:</p>
-            <p>Фамилия:</p>
+            <p>Полное имя:</p>
             <p>Номер телефона:</p>
-            <p>Город:</p>
+            <p>Компания:</p>
+            <p>Адрес:</p>
           </div>
 
           <div class="col-md-8">
             <form method="POST">{% csrf_token %}
-              <input type="text" value="{{user.first_name}}" name="first_name" class="form-control">
-              <input type="text" value="{{user.last_name}}" name="last_name" class="form-control">
-              <input type="number" value="{{user.phone}}" name="phone" class="form-control">
-              <input type="text" value="{{user.city}}" name="city" class="form-control">
+              {{form.full_name}}
+              {{form.phone}}
+              {{form.company}}
+              {{form.address}}
               <button type="submit" class="btn btn-primary" style=" margin-bottom:18px; margin-top:18px;">Сохранить</button>
             </form>
           </div>

@@ -1,0 +1,5 @@
+[client]
+database = site_for_orders
+user = fedor
+password = privet19991
+default-character-set = utf8

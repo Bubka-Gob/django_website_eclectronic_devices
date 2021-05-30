@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container bg-light py-3 px-5">
+    <div style="border-bottom: 1px solid black;"></div>
+    <h4 style="text-align: center;">Заказы обрабатываемые вами</h4>
+    {% for order in orders_current %}
+      {% include 'order_container.html' %}
+    {% endfor %}
+
+    <div style="border-bottom: 1px solid black;"></div>
+    <h4 style="text-align: center;">Новые заказы</h4>
+    {% for order in orders_new %}
+      {% include 'order_container.html' %}
+    {% endfor %}
+
+    <div style="border-bottom: 1px solid black;"></div>
+    <h4 style="text-align: center;">Заказы обрабатываемые другими операторами</h4>
+    {% for order in orders_in_process %}
+      {% include 'order_container.html' %}
+    {% endfor %}
+
+    <div style="border-bottom: 1px solid black;"></div>
+    <h4 style="text-align: center;">Выполненные заказы</h4>
+    {% for order in orders_finished %}
+      {% include 'order_container.html' %}
+    {% endfor %}
+  </div>
+{% endblock %}

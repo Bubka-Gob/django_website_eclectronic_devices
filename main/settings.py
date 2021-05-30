@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-o0oiqk5x=tzn^!a!_vped(q_bc%1+%herbl7cnnbj+qjm+c3v0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.100.5']
+ALLOWED_HOSTS = ['192.168.100.3']
 
 
 # Application definition
@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'orders',
-    'employee'
+    'employee',
+    'phone_field'
 ]
 
 MIDDLEWARE = [
@@ -86,8 +87,10 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': 'database.cnf',
+        },
     }
 }
 
@@ -119,7 +122,7 @@ LANGUAGES = (
     ('en', 'English')
 )
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Etc/GMT+7'
 
 USE_I18N = True
 
@@ -132,6 +135,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -1,0 +1,14 @@
+<div class="card" style="width: 100%; margin-top: 12px; margin-bottom: 12px">
+  <div class="card-body">
+    <h5 class="card-title">{{element.0.full_name}}</h5>
+    <p class="card-text">{{element.0.specialization}}</p>
+    {% for work in element.1 %}
+      <p class="card-text">{{work.device.name}}</p>
+    {% endfor %}
+    {% if element.2 %}
+      <a href="{% url 'employee_removing-page' order_id=order.id employee_id=element.0.id %}" class="btn btn-primary">Удалить</a>
+    {% else %}
+      <a href="{% url 'employee_adding-page' order_id=order.id employee_id=element.0.id %}" class="btn btn-primary">Добавить</a>
+    {% endif %}
+  </div>
+</div>

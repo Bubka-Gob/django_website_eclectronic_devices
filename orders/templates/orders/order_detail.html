@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container bg-white">
-        <h1>{{object.name}} </h1>
-        <p>{{object.description}}</p>
+        <h2 style="text-align: center;">Заказ от {{order.date_of_creation}} </h2>
+        {% include 'order_info.html' %}
     </div>
 {% endblock %}
