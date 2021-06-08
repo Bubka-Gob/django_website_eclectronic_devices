@@ -18,7 +18,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from home.views import home_view, register_view, login_view, logout_view, profile_view, redact_view
-from orders.views import device_creation_view, order_list_view, examples_view, order_detail_view, order_creation_view
+from orders.views import (device_creation_view,
+                          order_list_view,
+                          examples_view,
+                          order_detail_view,
+                          order_creation_view,
+                          device_from_example_view)
 from employee.views import (orders_panel_view,
                             employee_order_view,
                             order_accept_view,
@@ -48,7 +53,8 @@ urlpatterns = [
     path('profile/employee_order/<int:order_id>/add/<int:employee_id>', employee_adding_view, name='employee_adding-page'),
     path('profile/employee_order/<int:order_id>/remove/<int:employee_id>', employee_removing_view, name='employee_removing-page'),
     path('profile/redact/', redact_view, name='redact-page'),
-    path('examples/', examples_view, name='examples-page')
+    path('examples/', examples_view, name='examples-page'),
+    path('examples/redact/<int:device_id>', device_from_example_view, name='device_from_example-page')
 ]
 
 if settings.DEBUG: # new

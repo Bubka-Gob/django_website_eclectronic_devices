@@ -8,6 +8,7 @@
       {% elif order.is_in_process %}
         <a href="{% url 'device_redact-page' order_id=order.id %}"><button class="btn btn-primary">Редактировать</button></a>
         <a href="{% url 'employee_managing-page' order_id=order.id %}"><button class="btn btn-primary">Выбрать сотрудников</button></a>
+        <a href="{% url 'order_finish-page' order_id=order.id %}"><button class="btn btn-primary">Пометить завершенным</button></a>
 
 
         <!--

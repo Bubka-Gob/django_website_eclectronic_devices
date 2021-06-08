@@ -20,6 +20,24 @@ def device_creation_view(request):
     return render(request, 'orders/creation.html', {'form': form})
 
 
+def device_from_example_view(request, device_id):
+    if request.method == 'GET':
+        device = Device.objects.get(id=device_id)
+        form = DeviceForm(instance=device)
+    else:
+        form = DeviceForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            if (request.POST['areaOptions'] == 'is_room'):
+                form.is_room = True
+            elif (request.POST['areaOptions'] == 'is_street'):
+                form.is_street = True
+            form.save()
+            return redirect('order_creation-page', device_id=form.id)
+
+    return render(request, 'orders/creation.html', {'form': form})
+
+
 def order_creation_view(request, device_id):
     if request.method == 'GET':
         form = OrderForm()
@@ -28,11 +46,6 @@ def order_creation_view(request, device_id):
         device = Device.objects.get(id=device_id)
         order = Order(address=form.data['address'], client=request.user, device=device)
         order.save()
-        # form.data.save(commit=False)
-        # form.client = request.user.id
-        # form.device = device_id
-        # print(form.data)
-        # form.save()
         messages.success(request, f'Закаказ успешно оформлен, ожидайте звонка оператора')
         return redirect('profile-page')
 

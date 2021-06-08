@@ -68,8 +68,8 @@ def order_finish_view(request, order_id):
         order.is_finished = True
         order.save()
     else:
-        messages.error(request, f'Техническое задание не сформировано')
-    return redirect('employee_panel-page')
+        messages.warning(request, f'Техническое задание не сформировано')
+    return redirect('orders_panel-page')
 
 
 def employee_managing_view(request, order_id):

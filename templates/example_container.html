@@ -4,11 +4,8 @@
     <p class="card-text">{{device.description}}</p>
     <p class="card-text">{{device.requirements}}</p>
     <img src="{{device.image.url}}" style="margin-bottom: 15px;" class="card-img-top" alt="...">
-    {% if user.is_staff %}
-      <a href="{% url 'order_creation-page' device_id=device.id %}" class="btn btn-primary">Редактировать</a>
-    {% else %}
-      <a href="{% url 'order_creation-page' device_id=device.id %}" class="btn btn-primary">Оформить заказ</a>
-    {% endif %}
+    <a href="{% url 'device_from_example-page' device_id=device.id %}" class="btn btn-primary">Редактировать</a>
+    <a href="{% url 'order_creation-page' device_id=device.id %}" class="btn btn-primary">Оформить заказ</a>
 
   </div>
 </div>
